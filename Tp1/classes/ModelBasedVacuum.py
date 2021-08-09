@@ -12,6 +12,6 @@ class ModelBasedVacuum(VacuumBase):
             if self.floor[self.current_position] in ("", "#"):
                 # Nothing else to do here, we add the index to cleaned_positions
                 self.__cleaned_positions.add(self.current_position)
-            sleep(0.13)
+            sleep(1)
             self.move()
         print(f"Finished in {self.movements} movements")
