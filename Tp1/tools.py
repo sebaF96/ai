@@ -8,6 +8,14 @@ def set_random_size():
 def set_random_starting(size):
     return random.randint(0, size - 1)
 
+def log(last_operation, current_position, floor_status, movements):
+    if last_operation == "Clear":
+        last_operation = f"Clear index {current_position}"
+    print(f"\nMovements: {movements}")
+    print(f"Last operation: {last_operation}")
+    print(f"Current position: {current_position}")
+    print(f"Floor status:")
+    print(floor_status)
 
 def generate_secuence(size):
     choices = [" ", "#", "+", "x"]
@@ -39,6 +47,24 @@ def change_dir(direction):
         direction = 1
     return direction
 
+def get_direction(position, size):
+    if abs(size - position) > abs(0 - position):
+        direction = "left"
+    else:
+        direction = "right"
+    return direction
 
+
+def is_dirty(value):
+    return value in ["#", "+", "x"]
+
+
+def clear(floor: list, position: int):
+    if floor[position] == "#":
+        return
+    elif floor[position] == "x":
+        floor[position] = "+"
+    else:
+        floor[position] = ""
 
 

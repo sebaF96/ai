@@ -1,17 +1,22 @@
-from tools import get_random_floor, get_starting_position, log, is_dirty, clear
-from time import sleep
+from tools import get_random_floor, get_starting_position, is_dirty, clear, log
 
-def start(floor):
+
+def start():
+    floor = get_random_floor()
     position = get_starting_position(len(floor))
     direction = "right"
     last_movement = "Move right"
     movements = 0
+    cleaned_pos = set()
     print(f"Starting index: {position}")
     print("Starting floor:")
     print(floor)
-    while True:
-        sleep(2)
+    while len(floor) > len(cleaned_pos):
+        input()
+        if (floor[position] in ("", "#")):
+            cleaned_pos.add(position)
         movements += 1
+
         if is_dirty(floor[position]) and last_movement != "Clear":
             # Position dirty and didn't clean in last movement
             clear(floor, position)
@@ -36,11 +41,7 @@ def start(floor):
             position += 1
         log(last_movement, position, floor, movements)
 
-
-def main():
-    floor = get_random_floor()
-    start(floor)
-
+    print("All cleaned!")
 
 if __name__ == '__main__':
-    main()
+    start()
