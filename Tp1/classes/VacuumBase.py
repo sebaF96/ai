@@ -22,14 +22,14 @@ class VacuumBase:
         print(f"\nMovements: {self.movements}")
         print(f"Last operation: {last_operation}")
         print(f"Current position: {self.current_position}")
-        print(f"Floor status:")
+        print("Floor status:")
         print(self.floor)
 
     def move(self):
         if self.is_dirty(self.floor[self.current_position]) and self.last_movement != "Clear":
             # Position dirty and didn't clean in last movement
             self.clear_current_position()
-            self.last_movement = f"Clear"
+            self.last_movement = "Clear"
         elif self.current_position != 0 and self.direction == "left":
             # Moving left and can keep moving
             self.last_movement = "Move left"
