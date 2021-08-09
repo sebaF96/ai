@@ -5,34 +5,35 @@ class Enviroment:
         self.__movements = movements
         self.__direction = direction
 
-@property
-def floor_size(self):
-    return self.__floor_size
+    @property
+    def floor_size(self):
+        return self.__floor_size
 
-@property
-def starting(self):
-    return self.__starting
+    @property
+    def starting(self):
+        return self.__starting
 
-@property
-def movements(self):
-    return self.__movements
+    @property
+    def movements(self):
+        return self.__movements
 
-@property
-def direction(self):
-    return self.__direction
+    @property
+    def direction(self):
+        return self.__direction
 
-@floor_size.setter
-def floor_size(self, value):
-    self.__floor_size = value
+    @floor_size.setter
+    def floor_size(self, value):
+        self.__floor_size = value
 
-@starting.setter
-def starting(self, value):
-    self.__starting = value
+    @starting.setter
+    def starting(self, value):
+        self.__starting = value
 
-@movements.setter
-def movements(self,value):
-    self.__movements = value
+    @movements.setter
+    def movements(self, value):
+        self.__movements = value
 
-@direction.setter
-def direction(self,value):
-    self.__movements = value
+    @direction.setter
+    def direction(self, value):
+        self.__movements = value
+

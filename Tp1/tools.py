@@ -9,7 +9,17 @@ def set_random_starting(size):
 
 def generate_secuence(size):
     choices = [" ", "#", "+", "x"]
-    return [random.choices(choices) for x in range(size)]
+    generated = []
+    for x in range(size):
+        generated.append(random.choices(choices))
+    return generated
+
+
+
+
+def choose_dir():
+    directions = ["right", "left"]
+    return random.choices(directions)
 
 def change_dir(direction):
     if direction == 1:
