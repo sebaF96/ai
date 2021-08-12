@@ -26,7 +26,7 @@ class VacuumBase:
         print(self.floor)
 
     def move(self):
-        if self.is_dirty(self.floor[self.current_position]) and self.last_movement != "Clear":
+        if self.should_clean():
             # Position dirty and didn't clean in last movement
             self.clear_current_position()
             self.last_movement = "Clear"
@@ -58,6 +58,9 @@ class VacuumBase:
             self.floor[self.current_position] = "+"
         else:
             self.floor[self.current_position] = ""
+
+    def should_clean(self) -> bool:
+        return self.is_dirty(self.floor[self.current_position]) and self.last_movement != "Clear"
 
     def is_dirty(self, cell_value):
         return cell_value in ["#", "+", "x"]
