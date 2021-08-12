@@ -1,14 +1,6 @@
 from .VacuumBase import VacuumBase
 from time import sleep
 
-
-#si limpia una vez y hay suciedad
-#vuelve a limpiar, aumenta el contador
-
-#si la psocion tiene mas de 2 limpiezas skipear
-
-#calve pos val cantidad de limpiezas
-
 class ModelBasedVacuum(VacuumBase):
     def __init__(self, floor: list, starting_position: int):
         super().__init__(floor, starting_position)
