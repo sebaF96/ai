@@ -10,13 +10,19 @@ class RandomVacuum(ObjectiveBasedVacuum):
         self.__absolute_mess = set()
         self.__current_cleans = 0
 
-    def set_starting_direction(self, position, size):
-        self.direction = "left" if abs(size - position) > abs(0 - position) else "right"
+    def log(self):
+        last_operation = self.last_movement if self.last_movement != "Clear" else f"Clear index {self.current_position}"
+        print(f"\nMovements: {self.movements}")
+        print(f"Last operation: {last_operation}")
+        print(f"Current position: {self.current_position}")
+        print(f"Known permanent marks: {sorted(list(self.__absolute_mess))}")
+        print("Floor status:")
+        print(self.floor)
 
     def start(self):
         while True:
+            sleep(1)
             mess_cell_if_unlucky(self.floor, self.current_position)
-            sleep(0.5)
             self.move()
 
     def should_clean(self) -> bool:
@@ -24,12 +30,8 @@ class RandomVacuum(ObjectiveBasedVacuum):
             self.__absolute_mess.add(self.current_position)
             self.__current_cleans = 0
             return False
-
-        elif self.current_position in self.__absolute_mess:
-            return False
-
-        elif self.is_dirty(self.floor[self.current_position]):
+        elif self.is_dirty(self.floor[self.current_position]) and self.current_position not in self.__absolute_mess:
             self.__current_cleans += 1
             return True
-        else:
-            return False
+        self.__current_cleans = 0
+        return False

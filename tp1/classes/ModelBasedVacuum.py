@@ -10,7 +10,7 @@ class ModelBasedVacuum(VacuumBase):
 
     def start(self):
         while len(self.floor) > len(self.__cleaned_positions):
-            sleep(0.5)
+            sleep(1)
             self.move()
         print(f"Finished in {self.movements} movements")
 
