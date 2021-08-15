@@ -1,14 +1,16 @@
 from abc import abstractmethod
+from time import sleep
 
 
 class VacuumBase:
-    def __init__(self, floor: list, starting_position: int):
+    def __init__(self, floor: list, starting_position: int, manual_steps: bool = False):
         self.__floor = floor
         self.__starting_position = starting_position
         self.__current_position = starting_position
         self.__movements = 0
         self.__last_movement = "Move Right"
         self.__direction = "right"
+        self.__manual_steps = manual_steps
         print(f"Starting index: {self.__starting_position}")
         print("Starting floor:")
         print(self.__floor)
@@ -24,6 +26,9 @@ class VacuumBase:
         print(f"Current position: {self.current_position}")
         print("Floor status:")
         print(self.floor)
+
+    def wait_between_steps(self):
+        input() if self.__manual_steps else sleep(1)
 
     def move(self):
         if self.should_clean():

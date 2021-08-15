@@ -1,16 +1,15 @@
 from .VacuumBase import VacuumBase
-from time import sleep
 
 
 class ModelBasedVacuum(VacuumBase):
-    def __init__(self, floor: list, starting_position: int):
-        super().__init__(floor, starting_position)
+    def __init__(self, floor: list, starting_position: int, manual_steps: bool = False):
+        super().__init__(floor, starting_position, manual_steps)
         self.__cleans = {position: 0 for position in range(len(self.floor))}
         self.__cleaned_positions = set()
 
     def start(self):
         while len(self.floor) > len(self.__cleaned_positions):
-            sleep(1)
+            self.wait_between_steps()
             self.move()
         print(f"Finished in {self.movements} movements")
 

@@ -1,8 +1,8 @@
 import random
 
 
-def get_random_floor() -> list:
-    size = random.randint(5, 30)
+def get_random_floor(floor_size=None) -> list:
+    size = random.randint(5, 20) if not floor_size else floor_size
     possible_values = ["", "#", "+", "x"]
     return [random.choice(possible_values) for i in range(size)]
 
