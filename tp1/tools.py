@@ -21,4 +21,3 @@ def mess_cell_if_unlucky(floor: list, secured_pos: int):
         floor[random_position] = "x"
     else:
         floor[random_position] = "+"
-

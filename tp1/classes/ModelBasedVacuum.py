@@ -1,6 +1,7 @@
 from .VacuumBase import VacuumBase
 from time import sleep
 
+
 class ModelBasedVacuum(VacuumBase):
     def __init__(self, floor: list, starting_position: int):
         super().__init__(floor, starting_position)
@@ -20,6 +21,3 @@ class ModelBasedVacuum(VacuumBase):
         else:
             self.__cleaned_positions.add(self.current_position)
             return False
-
-
-
