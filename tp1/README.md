@@ -1,6 +1,6 @@
-# TP 1 - Agentes Racionales
+# 📖 TP 1 - Agentes Racionales
 
-## Statement
+## 📢 Statement 
 Se deberán crear 3 programas donde cada uno simule un agente, se debe tener en
 cuenta que:
 + El tamaño inicial del suelo es aleatorio.
@@ -11,7 +11,7 @@ Además cada uno de los programas debera mostrar:
 + El estado inicial de piso para cada movimiento.
 + Las acciones que realiza la aspiradora.
 + La cantidad de movimientos totales (mover, cambiar dirección, aspirar)
-### Programs
+### 📦 Programs 
 
 |   | Cant. Baldosas  | Historial de posiciones | Cant. limpiezas sobre baldozas | Ubicación dentro del piso | Tipos de manchas | Terminar Programa | Objetivo |
 | --- | --- | --- |---| --- | --- | --- | --- |
@@ -19,7 +19,7 @@ Además cada uno de los programas debera mostrar:
 | Basado en modelo | SI | SI | SI | SI | SI | No quedan baldosas que puedan ser limpiadas | NO |
 | Basado en objetivos | SI | SI | SI | SI | SI | No quedan baldosas que puedan ser limpiadas | Limpiar las baldosas en la menor cantidad posible de movimientos|
 
-## Usage
+## ⚙️ Usage
 
 Para lanzar alguna de las aspiradoras, se debe ejecutar con python alguno
 de los archivos `first_agent.py`, `second_agent.py`, `third_agent.py` o `fourth_agent.py`
