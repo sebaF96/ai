@@ -1,5 +1,4 @@
 from .ObectiveBasedVacuum import ObjectiveBasedVacuum
-from time import sleep
 from tools import mess_cell_if_unlucky
 
 
