@@ -21,7 +21,7 @@ class RandomVacuum(ObjectiveBasedVacuum):
 
     def start(self):
         while True:
-            sleep(1)
+            self.wait_between_steps()
             mess_cell_if_unlucky(self.floor, self.current_position)
             self.move()
 
