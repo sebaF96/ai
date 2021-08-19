@@ -18,5 +18,5 @@ jobs:
         flake8 --count --max-line-length 140
     - name: Analysing jupyter notebook code with flake8-nb
       run: |
-        flake8_nb --count --filename '*.ipynb' --ignore E121,E501 
+        flake8_nb --count --filename '*.ipynb' --ignore E121,E501,F821 
 
