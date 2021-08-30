@@ -1,4 +1,8 @@
 .idea/
 *.pyc
 .ipynb_checkpoints/
-
+tp3/globos.csv
+tp3/iris.csv
+tp3/mammogram_dataset.csv
+tp3/sexo.csv
+tp3/tenis.csv
