@@ -2,7 +2,7 @@ import click
 import os
 from dotenv import load_dotenv
 import pandas as pd
-from utils import twitter_request, url, clean_data, tokenize_df
+from utils import twitter_request, url, clean_data, tokenize_df, count_words, create_wordcloud
 import nltk
 
 @click.command()
@@ -23,6 +23,8 @@ def search(hashtag, word):
     df_copy = df_clean
     tokenized_df = tokenize_df(df_copy)
     print(tokenized_df)
+    print(count_words(tokenized_df))
+    create_wordcloud(tokenized_df)
 
 if __name__ == '__main__':
     try:
