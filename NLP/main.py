@@ -2,7 +2,8 @@ import click
 import os
 from dotenv import load_dotenv
 import pandas as pd
-from utils import twitter_request, url
+from utils import twitter_request, url, clean_data
+import nltk
 
 @click.command()
 @click.option('-hashtag', prompt=True, help="Enter a hashtag to search with #", default="")
@@ -17,6 +18,17 @@ def search(hashtag, word):
     response = twitter_request(hashtag, word, bearer_token)
     df = pd.json_normalize(response.json()['data'])
     print(df)
+    df_clean = clean_data(df)
+    print(df_clean)
 
 if __name__ == '__main__':
+    try:
+        nltk.download('punkt')
+        nltk.download('averaged_perceptron_tagger')
+        nltk.download('wordcloud')
+        nltk.download('stopwords')
+        nltk.download('tagsets')
+    except Exception as e:
+        print(e)
+        exit(1)
     search()
