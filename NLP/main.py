@@ -2,7 +2,7 @@ import click
 import os
 from dotenv import load_dotenv
 import pandas as pd
-from utils import twitter_request, url, clean_data
+from utils import twitter_request, url, clean_data, tokenize_df
 import nltk
 
 @click.command()
@@ -20,6 +20,9 @@ def search(hashtag, word):
     print(df)
     df_clean = clean_data(df)
     print(df_clean)
+    df_copy = df_clean
+    tokenized_df = tokenize_df(df_copy)
+    print(tokenized_df)
 
 if __name__ == '__main__':
     try:

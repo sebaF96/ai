@@ -1,7 +1,8 @@
 import string
+from nltk.tokenize import TweetTokenizer
+import requests
 
 url = "https://api.twitter.com/2/tweets/search/recent"
-import requests
 
 def twitter_request(hashtag, word, bearer_token) -> list:
     """ En esta funcion deberían estar los headers y los params para hacer la query en la API """
@@ -32,7 +33,12 @@ def clean_data(df: list) -> list:
     df["text"].replace(r"\t", ' ', regex=True, inplace=True)
     df["text"].replace('[{}]'.format(string.punctuation), ' ', regex=True, inplace=True)
     df["text"].replace(r"\n", '', regex=True, inplace=True)
-
     df["text"] = df["text"].str.lower()
 
+    return df
+
+def tokenize_df(df: list) -> list:
+    tt = TweetTokenizer()
+    tokenized_text = df['text'].apply(tt.tokenize)
+    df["tokenized_text"] = tokenized_text
     return df
