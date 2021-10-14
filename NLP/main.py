@@ -1,11 +1,7 @@
 import click
-import os
-from dotenv import load_dotenv
-import pandas as pd
+from pipeline.Cleaner import Cleaner
 from pipeline.Requester import Requester
 from pipeline.nlp_pipeline import NLPPipeline
-from utils import twitter_request, url, clean_data, tokenize_df, count_words, create_wordcloud
-import nltk
 
 
 @click.command()
@@ -13,7 +9,8 @@ import nltk
 def search(word):
     click.secho("Searching tweets by specified parameters", fg="blue", bold=True)
     pipeline = NLPPipeline(word)
-    pipeline.add(Requester())
+    pipeline.add(Requester(max_pages=3))
+    pipeline.add(Cleaner(ignore_emojis=True))
     pipeline.run()
 
     # # Tener en cuenta los download de nltk.download()
