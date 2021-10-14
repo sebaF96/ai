@@ -8,6 +8,7 @@ import pandas as pd
 
 url = "https://api.twitter.com/2/tweets/search/recent"
 
+
 def twitter_request(hashtag, word, bearer_token) -> list:
     """ En esta funcion deberían estar los headers y los params para hacer la query en la API """
     params = {
@@ -23,6 +24,7 @@ def twitter_request(hashtag, word, bearer_token) -> list:
     if response.status_code != 200:
         raise Exception(response.status_code, response.text)
     return response
+
 
 def clean_data(df: list) -> list:
     """Esta función recibe el dataframe y le quita las menciones, urls hashtags y simbolos raros, deja emojis(requisito)"""
@@ -41,11 +43,13 @@ def clean_data(df: list) -> list:
 
     return df
 
+
 def tokenize_df(df: list) -> list:
     tt = TweetTokenizer()
     tokenized_text = df['text'].apply(tt.tokenize)
     df["tokenized_text"] = tokenized_text
     return df
+
 
 def count_words(df):
     tokenized_list = df.explode('tokenized_text')
@@ -56,10 +60,10 @@ def count_words(df):
     df_fdist.sort_values(by=['Frequency'], inplace=True)
     return df_fdist
 
+
 def create_wordcloud(df):
     wordcloud = WordCloud(max_words=100, background_color="white").generate(df['tokenized_text'].to_string())
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.rcParams['figure.figsize'] = [150, 150]
     plt.show()
-
