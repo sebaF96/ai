@@ -4,3 +4,10 @@
 venv/
 .env
 emotions/img/
+NLP/include
+NLP/lib
+NLP/bin
+NLP/lib64
+NLP/share
+NLP/pyvenv.cfg
+
