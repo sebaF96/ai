@@ -1,0 +1,6 @@
+click
+pandas
+wordcloud
+nltk
+vaderSentiment
+python-dotenv
