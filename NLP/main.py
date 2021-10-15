@@ -10,9 +10,10 @@ from utils import download_packages_if_needed
 def search(word):
     click.secho("Searching tweets by specified parameters", fg="blue", bold=True)
     pipeline = NLPPipeline(word)
-    pipeline.add(Requester(max_pages=13))
+    pipeline.add(Requester(max_pages=3))
     pipeline.add(Cleaner(ignore_emojis=True))
     pipeline.add(Tokenizer())
+    pipeline.add(Stopper())
     pipeline.run()
 
     # # Tener en cuenta los download de nltk.download()

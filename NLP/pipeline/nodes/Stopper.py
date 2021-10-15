@@ -4,14 +4,20 @@ from .PipelineNode import PipelineNode
 
 class Stopper(PipelineNode):
     def __init__(self):
-        self.__stopwords = ''
+        self.__stopwords = self.get_stopwords()
 
     def handle(self, df):
-        self.__stopwords = set(stopwords.words('english'))
-        no_stopwords_data = []
-        # Crear lista sin stopwords
-        for x in df['tokenized_text']:
-            for word in x:
-                if word.lower() not in self.__stopwords:
-                    no_stopwords_data.append(word)
-        # Esta lista sin stop words deberia guardarse como df? 
+        df['tokenized_text'] = df['tokenized_text'].apply(self.eliminate_stopwords)
+        return df
+
+    def eliminate_stopwords(self, tokenized_tweed_text: list) -> list:
+        return [word for word in tokenized_tweed_text if word not in self.__stopwords]
+
+    def get_stopwords(self) -> set:
+        stop_words = set(stopwords.words('english'))
+        stop_words.union(
+            'our',
+            'stop',
+            'words'
+        )
+        return stop_words
