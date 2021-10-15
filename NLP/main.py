@@ -3,6 +3,7 @@ from pipeline.Cleaner import Cleaner
 from pipeline.Requester import Requester
 from pipeline.nlp_pipeline import NLPPipeline
 from pipeline.Tokenizer import Tokenizer
+from utils import download_packages_if_needed
 
 
 @click.command()
@@ -30,13 +31,5 @@ def search(word):
 
 
 if __name__ == '__main__':
-    # try:
-    #     nltk.download('punkt')
-    #     nltk.download('averaged_perceptron_tagger')
-    #     nltk.download('wordcloud')
-    #     nltk.download('stopwords')
-    #     nltk.download('tagsets')
-    # except Exception as e:
-    #     print(e)
-    #     exit(1)
+    download_packages_if_needed()
     search()

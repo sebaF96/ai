@@ -1,10 +1,13 @@
 import string
+import nltk
 from nltk.tokenize import TweetTokenizer
 import requests
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from nltk.probability import FreqDist
 import pandas as pd
+import os
+from click import secho
 
 url = "https://api.twitter.com/2/tweets/search/recent"
 
@@ -67,3 +70,19 @@ def create_wordcloud(df):
     plt.axis("off")
     plt.rcParams['figure.figsize'] = [150, 150]
     plt.show()
+
+
+def download_packages_if_needed():
+    home = os.getenv('HOME')
+    if not os.path.isdir(f'{home}/nltk_data/tokenizers/punkt'):
+        secho("Downloading package nltk.punkt...", fg="blue", bold=True)
+        nltk.download('punkt')
+    if not os.path.isdir(f'{home}/nltk_data/corpora/stopwords'):
+        secho("Downloading package nltk.stopwords...", fg="blue", bold=True)
+        nltk.download('stopwords')
+    if not os.path.isdir(f'{home}/nltk_data/help/tagsets'):
+        secho("Downloading package nltk.tagsets...", fg="blue", bold=True)
+        nltk.download('tagsets')
+    if not os.path.isdir(f'{home}/nltk_data/taggers/averaged_perceptron_tagger'):
+        secho("Downloading package nltk.averaged_perceptron_tagger...", fg="blue", bold=True)
+        nltk.download('averaged_perceptron_tagger')
