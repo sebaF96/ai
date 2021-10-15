@@ -2,6 +2,7 @@ import click
 from pipeline.Cleaner import Cleaner
 from pipeline.Requester import Requester
 from pipeline.nlp_pipeline import NLPPipeline
+from pipeline.Tokenizer import Tokenizer
 
 
 @click.command()
@@ -11,6 +12,7 @@ def search(word):
     pipeline = NLPPipeline(word)
     pipeline.add(Requester(max_pages=3))
     pipeline.add(Cleaner(ignore_emojis=True))
+    pipeline.add(Tokenizer())
     pipeline.run()
 
     # # Tener en cuenta los download de nltk.download()
