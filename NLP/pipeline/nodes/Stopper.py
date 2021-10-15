@@ -1,6 +1,6 @@
 from nltk.corpus import stopwords
-from pipeline.PipelineNode import PipelineNode
-from nltk.tokenize import word_tokenize
+from .PipelineNode import PipelineNode
+
 
 class Stopper(PipelineNode):
     def __init__(self):

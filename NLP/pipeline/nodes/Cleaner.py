@@ -1,7 +1,6 @@
 import string
 import pandas as pd
-
-from pipeline.PipelineNode import PipelineNode
+from .PipelineNode import PipelineNode
 
 
 class Cleaner(PipelineNode):
