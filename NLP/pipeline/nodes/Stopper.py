@@ -1,12 +1,13 @@
 from nltk.corpus import stopwords
 from .PipelineNode import PipelineNode
+import pandas as pd
 
 
 class Stopper(PipelineNode):
     def __init__(self):
         self.__stopwords = self.get_stopwords()
 
-    def handle(self, df):
+    def handle(self, df: pd.DataFrame) -> pd.DataFrame:
         df['tokenized_text'] = df['tokenized_text'].apply(self.eliminate_stopwords)
         return df
 
@@ -16,8 +17,6 @@ class Stopper(PipelineNode):
     def get_stopwords(self) -> set:
         stop_words = set(stopwords.words('english'))
         stop_words.union(
-            'our',
-            'stop',
-            'words'
+            't'
         )
         return stop_words

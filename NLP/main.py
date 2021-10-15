@@ -14,6 +14,7 @@ def search(word):
     pipeline.add(Cleaner(ignore_emojis=True))
     pipeline.add(Tokenizer())
     pipeline.add(Stopper())
+    pipeline.add(Labeler())
     pipeline.run()
 
     # # Tener en cuenta los download de nltk.download()
