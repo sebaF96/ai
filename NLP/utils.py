@@ -86,3 +86,6 @@ def download_packages_if_needed():
     if not os.path.isdir(f'{home}/nltk_data/taggers/averaged_perceptron_tagger'):
         secho("Downloading package nltk.averaged_perceptron_tagger...", fg="blue", bold=True)
         nltk.download('averaged_perceptron_tagger')
+    if not os.path.isdir(f'{home}/nltk_data/corpora/wordnet'):
+        secho("Downloading package nltk.wordnet", fg="blue", bold=True)
+        nltk.download('wordnet')
