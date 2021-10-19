@@ -4,3 +4,4 @@ from .Stopper import Stopper
 from .Tokenizer import Tokenizer
 from .POSLabeler import Labeler
 from .Lemmatizer import Lemmatizer
+from .Polarizer import Polarizer
