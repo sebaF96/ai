@@ -23,8 +23,8 @@ class Printer(PipelineNode):
         wordcloud = WordCloud(
             max_words=100,
             background_color="white",
-            width=1024,
-            height=512,
+            width=800,
+            height=400,
             min_word_length=2
         ).generate(df['tokenized_text'].to_string())
         wordcloud.to_file(self.__target_directory + '/wc.png')
