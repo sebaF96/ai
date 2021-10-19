@@ -27,13 +27,13 @@ class Labeler(PipelineNode):
     def extract_verbs(self, labeled_text: list) -> list:
         verbs = []
         for index, value in labeled_text:
-            if value == 'VB':
+            if value in ('VB', 'VBG', 'VBD'):
                 verbs.append(index)
-            return verbs
+        return verbs
 
     def extract_adjectives(self, labeled_text: list) -> list:
         adjetives = []
         for index, value in labeled_text:
             if value in ('JJ', 'RB'):
                 adjetives.append(index)
-            return adjetives
+        return adjetives
