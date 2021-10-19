@@ -9,31 +9,31 @@ class Labeler(PipelineNode):
 
     def handle(self, df: pd.DataFrame) -> pd.DataFrame:
         df['labeled_text'] = df['tokenized_text'].apply(self.label)
-        df['noun'] = df['labeled_text'].apply(self.order_nouns)
-        df['adjective'] = df['labeled_text'].apply(self.order_adjectives)
-        df['verbs'] = df['labeled_text'].apply(self.order_verbs)
+        df['nouns'] = df['labeled_text'].apply(self.extract_nouns)
+        df['adjectives'] = df['labeled_text'].apply(self.extract_adjectives)
+        df['verbs'] = df['labeled_text'].apply(self.extract_verbs)
         return df
 
     def label(self, tokenized_tweet_text: list) -> list:
         return nltk.pos_tag(tokenized_tweet_text)
 
-    def order_nouns(self, labeled_text: list) -> list:
+    def extract_nouns(self, labeled_text: list) -> list:
         nouns = []
         for index, value in labeled_text:
-            if value == 'NNP' or value == 'NN':
+            if value in ('NNP', 'NN'):
                 nouns.append(index)
         return nouns
 
-    def order_verbs(self, labeled_text: list) -> list:
+    def extract_verbs(self, labeled_text: list) -> list:
         verbs = []
         for index, value in labeled_text:
             if value == 'VB':
                 verbs.append(index)
             return verbs
 
-    def order_adjectives(self, labeled_text: list) -> list:
+    def extract_adjectives(self, labeled_text: list) -> list:
         adjetives = []
         for index, value in labeled_text:
-            if value == 'JJ' or value == 'RB':
+            if value in ('JJ', 'RB'):
                 adjetives.append(index)
             return adjetives

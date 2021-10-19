@@ -8,8 +8,15 @@ class Lemmatizer(PipelineNode):
         self.__lemmatizer = WordNetLemmatizer()
 
     def handle(self, df: pd.DataFrame) -> pd.DataFrame:
-        df2 = df.copy()
-        return self.lemmatizer_fun(df2)
+        df['nouns'] = df['nouns'].apply(self.lemmatize, args=('n',))
+        df['adjectives'] = df['adjectives'].apply(self.lemmatize, args=('a',))
+        df['verbs'] = df['verbs'].apply(self.lemmatize, args=('v',))
+        return df
+
+    def lemmatize(self, words: list, word_type: str):
+        if word_type not in ('a', 'n', 'v', 'r'):
+            raise Exception(f'LemmatizerException: word_type must be any of [a, n, v, r]. Got {word_type}')
+        return [self.__lemmatizer.lemmatize(word, word_type) for word in words]
 
     def lemmatizer_fun(self, df: pd.DataFrame):
         for row in df['tokenized_text']:
