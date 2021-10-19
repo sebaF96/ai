@@ -89,3 +89,6 @@ def download_packages_if_needed():
     if not os.path.isdir(f'{home}/nltk_data/corpora/wordnet'):
         secho("Downloading package nltk.wordnet", fg="blue", bold=True)
         nltk.download('wordnet')
+    if not os.path.isdir(f'{home}/nltk_data/sentiment/'):
+        secho("Downloading package nltk.vader_lexicon", fg="blue", bold=True)
+        nltk.download('vader_lexicon')
