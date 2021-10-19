@@ -1,3 +1,4 @@
+import click
 import requests
 import pandas as pd
 import os
@@ -35,4 +36,5 @@ class Requester(PipelineNode):
             results.extend(response.json()['data'])
             token = response.json()['meta']['next_token'] if 'next_token' in response.json()['meta'] else None
         results = pd.DataFrame(results)
+        click.secho(f"Found {len(results)} tweets", fg="green", bold=True)
         return results
