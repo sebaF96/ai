@@ -17,6 +17,7 @@ def search(word):
     pipeline.add(Labeler())
     pipeline.add(Lemmatizer())
     pipeline.add(Polarizer())
+    pipeline.add(Printer())
     pipeline.run()
 
 
