@@ -20,20 +20,20 @@ class Labeler(PipelineNode):
     def extract_nouns(self, labeled_text: list) -> list:
         nouns = []
         for index, value in labeled_text:
-            if value in ('NNP', 'NN'):
+            if value in ('NNP', 'NN', 'NNS', 'NNPS'):
                 nouns.append(index)
         return nouns
 
     def extract_verbs(self, labeled_text: list) -> list:
         verbs = []
         for index, value in labeled_text:
-            if value in ('VB', 'VBG', 'VBD'):
+            if value in ('VB', 'VBG', 'VBD', 'VBN', 'VBP', 'VBZ'):
                 verbs.append(index)
         return verbs
 
     def extract_adjectives(self, labeled_text: list) -> list:
         adjetives = []
         for index, value in labeled_text:
-            if value in ('JJ', 'RB'):
+            if value in ('JJ', 'JJR', 'JJS', 'RB'):
                 adjetives.append(index)
         return adjetives
