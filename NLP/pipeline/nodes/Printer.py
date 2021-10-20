@@ -18,6 +18,7 @@ class Printer(PipelineNode):
         self.copy_html_file()
         self.save_wordcloud(df)
         self.save_sentiment_pie(df)
+        self.save_df_as_html(df)
         # Métodos que crean gráficos aca
         webbrowser.open(self.__target_directory + '/results.html')
         return df
@@ -48,6 +49,10 @@ class Printer(PipelineNode):
         )
         plt.axis('equal')
         plt.savefig(self.__target_directory + '/sentiment.png')
+
+    def save_df_as_html(self, df: pd.DataFrame):
+        df.to_html(buf=self.__target_directory + '/df.html', columns=['text', 'tokenized_text', 'positive', 'negative',
+                                                                      'neutral'])
 
     def copy_html_file(self):
         src = f'{pathlib.Path(__file__).parent.absolute()}/resources/results.html'
