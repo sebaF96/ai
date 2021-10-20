@@ -14,13 +14,14 @@ class Printer(PipelineNode):
         self.__target_directory = self.create_target_directory()
 
     def handle(self, df: pd.DataFrame) -> pd.DataFrame:
-        sequence = ['nouns', 'adjectives', 'verbs', 'tokenized_text']
-        df.to_csv(self.__target_directory + '/results.csv')
         self.copy_html_file()
+        df.to_csv(self.__target_directory + '/results.csv')
+        sequence = ['nouns', 'adjectives', 'verbs', 'tokenized_text']
         for sec in sequence:
             self.save_wordcloud(df, sec)
         self.save_sentiment_pie(df)
         self.save_df_as_html(df)
+        self.save_tweets_by_hour(df)
         # Métodos que crean gráficos aca
         webbrowser.open(self.__target_directory + '/results.html')
         return df
@@ -51,6 +52,22 @@ class Printer(PipelineNode):
         )
         plt.axis('equal')
         plt.savefig(self.__target_directory + '/sentiment.png')
+
+    def save_tweets_by_hour(self, df: pd.DataFrame):
+        df_copy = df.copy()
+        df_copy['created_at'] = pd.to_datetime(df_copy['created_at'], format='%Y-%m-%dT%H:%M:%S')
+        groups = [df_copy['created_at'].dt.hour]
+        data_hour_message = df.groupby(groups).agg(frequency=('id', 'count'))
+        x = data_hour_message.index
+        y = data_hour_message["frequency"]
+        plt.figure(figsize=(12, 8))
+        plt.xticks(list(range(24)))
+        plt.bar(x, y, color='#1DA1F2')
+        plt.ylabel("Tweets")
+        plt.xlabel("Hora del dia")
+        plt.grid(axis='y')
+        plt.title("Cantidad de tweets por hora del día")
+        plt.savefig(self.__target_directory + '/tbh.png')
 
     def save_df_as_html(self, df: pd.DataFrame):
         df.to_html(buf=self.__target_directory + '/df.html', columns=['text', 'tokenized_text', 'positive', 'negative',
