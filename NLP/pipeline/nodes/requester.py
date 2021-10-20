@@ -17,7 +17,7 @@ class Requester(PipelineNode):
         self.__words = words
         bearer_token = os.getenv('BEARER_TOKEN')
         params = {
-            'query': f'{self.__words}  lang:en -is:retweet',
+            'query': f'{self.__words}  lang:en -is:retweet -has:links',
             'tweet.fields': 'created_at',
             'max_results': 100
         }
