@@ -1,5 +1,5 @@
 import pandas as pd
-from .PipelineNode import PipelineNode
+from .pipeline_node import PipelineNode
 from nltk.stem import WordNetLemmatizer
 
 

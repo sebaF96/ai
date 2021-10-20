@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 from datetime import datetime
-from .PipelineNode import PipelineNode
+from .pipeline_node import PipelineNode
 from shutil import copyfile
 
 

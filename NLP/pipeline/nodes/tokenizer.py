@@ -1,4 +1,4 @@
-from .PipelineNode import PipelineNode
+from .pipeline_node import PipelineNode
 from nltk.tokenize import TweetTokenizer
 
 

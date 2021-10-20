@@ -1,5 +1,5 @@
 from nltk.corpus import stopwords
-from .PipelineNode import PipelineNode
+from .pipeline_node import PipelineNode
 import pandas as pd
 
 

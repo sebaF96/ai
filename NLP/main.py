@@ -1,7 +1,6 @@
 import click
+import pipeline.nodes as nd
 from pipeline.nlp_pipeline import NLPPipeline
-from pipeline.nodes import *
-from pipeline.nodes.Tokenizer import Tokenizer
 from utils import download_packages_if_needed
 
 
@@ -10,14 +9,14 @@ from utils import download_packages_if_needed
 def search(word):
     click.secho("Searching tweets by specified parameters", fg="blue", bold=True)
     pipeline = NLPPipeline(word)
-    pipeline.add(Requester(max_pages=10))
-    pipeline.add(Cleaner(ignore_emojis=True))
-    pipeline.add(Tokenizer())
-    pipeline.add(Stopper())
-    pipeline.add(Labeler())
-    pipeline.add(Lemmatizer())
-    pipeline.add(Polarizer())
-    pipeline.add(Printer())
+    pipeline.add(nd.Requester(max_pages=25))
+    pipeline.add(nd.Cleaner(ignore_emojis=True))
+    pipeline.add(nd.Tokenizer())
+    pipeline.add(nd.Stopper())
+    pipeline.add(nd.Labeler())
+    pipeline.add(nd.Lemmatizer())
+    pipeline.add(nd.Polarizer())
+    pipeline.add(nd.Printer())
     pipeline.run()
 
 

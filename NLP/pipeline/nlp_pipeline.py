@@ -1,4 +1,4 @@
-from pipeline.nodes.PipelineNode import PipelineNode
+from pipeline.nodes.pipeline_node import PipelineNode
 
 
 class NLPPipeline:

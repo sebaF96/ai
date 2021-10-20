@@ -1,6 +1,6 @@
 import nltk
 import pandas as pd
-from .PipelineNode import PipelineNode
+from .pipeline_node import PipelineNode
 
 
 class Labeler(PipelineNode):

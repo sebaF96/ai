@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 import os
 from dotenv import load_dotenv
-from .PipelineNode import PipelineNode
+from .pipeline_node import PipelineNode
 
 
 class Requester(PipelineNode):
