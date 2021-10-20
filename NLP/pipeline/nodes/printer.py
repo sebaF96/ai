@@ -22,6 +22,7 @@ class Printer(PipelineNode):
         self.save_sentiment_pie(df)
         self.save_df_as_html(df)
         self.save_tweets_by_hour(df)
+        self.save_tweets_by_weekday(df)
         # Métodos que crean gráficos aca
         webbrowser.open(self.__target_directory + '/results.html')
         return df
@@ -63,11 +64,27 @@ class Printer(PipelineNode):
         plt.figure(figsize=(12, 8))
         plt.xticks(list(range(24)))
         plt.bar(x, y, color='#1DA1F2')
-        plt.ylabel("Tweets")
         plt.xlabel("Hora del dia")
+        plt.ylabel("Tweets")
         plt.grid(axis='y')
         plt.title("Cantidad de tweets por hora del día")
         plt.savefig(self.__target_directory + '/tbh.png')
+
+    def save_tweets_by_weekday(self, df: pd.DataFrame):
+        df_copy = df.copy()
+        df_copy['created_at'] = pd.to_datetime(df_copy['created_at'], format='%Y-%m-%dT%H:%M:%S')
+        groups = [df_copy['created_at'].dt.weekday]
+        tweets_by_weekday = df.groupby(groups).agg(frequency=('id', 'count'))
+        x = tweets_by_weekday.index
+        y = tweets_by_weekday["frequency"]
+        plt.figure(figsize=(12, 8))
+        plt.xticks(list(range(7)), ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'])
+        plt.bar(x, y, color='#1DA1F2')
+        plt.xlabel("Día de la semana")
+        plt.ylabel("Tweets")
+        plt.grid(axis='y')
+        plt.title("Cantidad de tweets por dia de la semana")
+        plt.savefig(self.__target_directory + '/tbwd.png')
 
     def save_df_as_html(self, df: pd.DataFrame):
         df.to_html(buf=self.__target_directory + '/df.html', columns=['text', 'tokenized_text', 'positive', 'negative',
