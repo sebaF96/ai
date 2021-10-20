@@ -19,21 +19,23 @@ class Labeler(PipelineNode):
 
     def extract_nouns(self, labeled_text: list) -> list:
         nouns = []
-        for index, value in labeled_text:
-            if value in ('NNP', 'NN', 'NNS', 'NNPS'):
-                nouns.append(index)
+        # Atributo de la clase -> para nouns, adjectives, verbs
+        exclude = ['messi', 'mbappe', 'neymar', 'psg', 'ucl', 'nba', 'nfl', 'barca', 'uefachampions league']
+        for word, tag in labeled_text:
+            if tag in ('NNP', 'NN', 'NNS', 'NNPS') or word in exclude:
+                nouns.append(word)
         return nouns
 
     def extract_verbs(self, labeled_text: list) -> list:
         verbs = []
-        for index, value in labeled_text:
-            if value in ('VB', 'VBG', 'VBD', 'VBN', 'VBP', 'VBZ'):
-                verbs.append(index)
+        for word, tag in labeled_text:
+            if tag in ('VB', 'VBG', 'VBD', 'VBN', 'VBP', 'VBZ'):
+                verbs.append(word)
         return verbs
 
     def extract_adjectives(self, labeled_text: list) -> list:
-        adjetives = []
-        for index, value in labeled_text:
-            if value in ('JJ', 'JJR', 'JJS', 'RB'):
-                adjetives.append(index)
-        return adjetives
+        adjectives = []
+        for word, tag in labeled_text:
+            if tag in ('JJ', 'JJR', 'JJS', 'RB'):
+                adjectives.append(word)
+        return adjectives

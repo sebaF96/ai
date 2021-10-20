@@ -20,7 +20,11 @@ class Stopper(PipelineNode):
             't',
             'rt',
             'amp',
-            'co'
+            'co',
+            'bht',
+            'bsc gamefi',
+            'nowplaying',
+            'non uber'
         ]
         stop_words.extend(new_stop_words)
         return stop_words
