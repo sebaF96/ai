@@ -16,8 +16,10 @@ class Stopper(PipelineNode):
 
     def get_stopwords(self) -> set:
         stop_words = set(stopwords.words('english'))
-        stop_words.union(
+        stop_words = stop_words.union(
             't',
-            'rt'
+            'rt',
+            'amp',
+            'co'
         )
         return stop_words

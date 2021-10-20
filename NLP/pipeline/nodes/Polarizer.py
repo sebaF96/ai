@@ -25,10 +25,10 @@ class Polarizer(PipelineNode):
             row["neutral"] = result["neu"]
             row["positive"] = result["pos"]
             row["compound"] = result["compound"]
-            if -1.0 <= result['compound'] < -0.2:
+            if -1.0 <= result['compound'] < -0.1:
                 row["result"] = "Negative"
-            elif -0.2 <= result['compound'] < 0.2:
+            elif -0.1 <= result['compound'] < 0.1:
                 row["result"] = "Neutral"
-            elif 0.2 <= result['compound'] < 1.0:
+            elif 0.1 <= result['compound'] < 1.0:
                 row["result"] = "Positive"
         return df
