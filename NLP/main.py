@@ -10,7 +10,7 @@ from utils import download_packages_if_needed
 def search(word):
     click.secho("Searching tweets by specified parameters", fg="blue", bold=True)
     pipeline = NLPPipeline(word)
-    pipeline.add(Requester(max_pages=5))
+    pipeline.add(Requester(max_pages=10))
     pipeline.add(Cleaner(ignore_emojis=True))
     pipeline.add(Tokenizer())
     pipeline.add(Stopper())

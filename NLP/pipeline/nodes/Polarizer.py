@@ -17,16 +17,18 @@ class Polarizer(PipelineNode):
         df["negative"] = ""
         df["neutral"] = ""
         df["positive"] = ""
+        df["compound"] = ""
         df["result"] = ""
         for index, row in df.iterrows():
-            result = self.__analyzer.polarity_scores(row['text'])
+            result = self.__analyzer.polarity_scores(' '.join(row['tokenized_text']))
             row["negative"] = result["neg"]
             row["neutral"] = result["neu"]
             row["positive"] = result["pos"]
-            if result['compound'] >= 0.7:
-                row["result"] = "Positive"
-            elif result['compound'] <= 0.3:
+            row["compound"] = result["compound"]
+            if -1.0 <= result['compound'] < -0.2:
                 row["result"] = "Negative"
-            else:
+            elif -0.2 <= result['compound'] < 0.2:
                 row["result"] = "Neutral"
+            elif 0.2 <= result['compound'] < 1.0:
+                row["result"] = "Positive"
         return df
