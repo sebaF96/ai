@@ -14,24 +14,26 @@ class Printer(PipelineNode):
         self.__target_directory = self.create_target_directory()
 
     def handle(self, df: pd.DataFrame) -> pd.DataFrame:
+        sequence = ['nouns', 'adjectives', 'verbs', 'tokenized_text']
         df.to_csv(self.__target_directory + '/results.csv')
         self.copy_html_file()
-        self.save_wordcloud(df)
+        for sec in sequence:
+            self.save_wordcloud(df, sec)
         self.save_sentiment_pie(df)
         self.save_df_as_html(df)
         # Métodos que crean gráficos aca
         webbrowser.open(self.__target_directory + '/results.html')
         return df
 
-    def save_wordcloud(self, df: pd.DataFrame):
+    def save_wordcloud(self, df: pd.DataFrame, field: str):
         wordcloud = WordCloud(
             max_words=100,
             background_color="white",
             width=800,
             height=400,
             min_word_length=2
-        ).generate(df['tokenized_text'].to_string())
-        wordcloud.to_file(self.__target_directory + '/wc.png')
+        ).generate(df[field].to_string())
+        wordcloud.to_file(self.__target_directory + f'/wc_{field}.png')
 
     def save_sentiment_pie(self, df: pd.DataFrame):
         result_column = df.filter(['result']).values.tolist()
