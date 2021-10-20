@@ -7,12 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <title>NLP results</title>
     <style>
       body {
         text-align: center;
         font-family: "Roboto", sans-serif;
+        margin-bottom: 25px;
       }
       h1 {
         font-size: 50px;
@@ -24,35 +30,27 @@
     <h1>Wordcloud de sustantivos</h1>
     <img src="wc_nouns.png" alt="wordcloud" />
 
-    <h1>Wordcloud de adjetivos</h1>
+    <h1 class="mt-5 mb-2">Wordcloud de adjetivos</h1>
     <img src="wc_adjectives.png" alt="wordcloud" />
 
-    <h1>Wordcloud de verbos</h1>
+    <h1 class="mt-5 mb-2">Wordcloud de verbos</h1>
     <img src="wc_verbs.png" alt="wordcloud" />
 
-    <h1>Wordcloud General:</h1>
+    <h1 class="mt-5 mb-2">Wordcloud General:</h1>
     <img src="wc_tokenized_text.png" alt="wordcloud" />
 
-    <h1>Análisis de sentimiento</h1>
+    <h1 class="mt-5 mb-2">Análisis de sentimiento</h1>
     <img src="sentiment.png" alt="sentiment" />
 
     <h1>Dataframe</h1>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6 text-right">
+        <span>&#128204;</span>
+        <a href="df.html"> Watch </a>
       </div>
-      <div class="col-md-4">
-        <table>
-      <tr>
-        <td>
-          <p>&#128204;</p>
-        </td>
-        <td>
-          <a href="df.html">Dataframe </a>
-        </td>
-      </tr>
-    </table>
-      </div>
-      <div class="col-md-4">
+      <div class="col-md-6 text-left">
+        <span>⬇️</span>
+        <a href="results.csv"> Download </a>
       </div>
     </div>
   </body>
