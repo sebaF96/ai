@@ -24,7 +24,11 @@ class Stopper(PipelineNode):
             'bht',
             'bsc gamefi',
             'nowplaying',
-            'non uber'
+            'non uber',
+            'bsc',
+            'giveaway',
+            'project'
+
         ]
         stop_words.extend(new_stop_words)
         return stop_words

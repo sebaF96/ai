@@ -19,7 +19,7 @@ class Cleaner(PipelineNode):
         df["text"].replace(MENTIONS_REGEX, '', regex=True, inplace=True)
         df["text"].replace(HASHTAG_REGEX, '', regex=True, inplace=True)
         if self.__ignore_emojis:
-            df["text"].replace(EMOJIS_REGEX, ' ', regex=True, inplace=True)
+            df["text"].replace(EMOJIS_REGEX, '', regex=True, inplace=True)
         df["text"].replace(r"\t", ' ', regex=True, inplace=True)
         df["text"].replace('[{}]'.format(string.punctuation), ' ', regex=True, inplace=True)
         df["text"].replace(r"\n", '', regex=True, inplace=True)

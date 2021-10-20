@@ -5,7 +5,10 @@ from .pipeline_node import PipelineNode
 
 class Labeler(PipelineNode):
     def __init__(self):
-        self.__known_nouns = ['messi', 'mbappe', 'neymar', 'psg', 'ucl', 'nba', 'nfl', 'barca', 'uefachampions league']
+        self.__known_nouns = ['messi', 'mbappe', 'neymar', 'psg', 'ucl', 'nba', 'nfl', 'barca', 'uefachampions league',
+                              'ronaldo', 'kylian', 'benzema', 'jorginho', 'nft', 'lewandowski', 'salah',
+                              'fifa', 'manchester', 'barcelona', 'paris', 'argentina', 'panenka', 'fr',
+                              'manchesterunited', 'hattrick', 'modric']
         self.__known_verbs = []
         self.__known_adjectives = ['goat']
 
