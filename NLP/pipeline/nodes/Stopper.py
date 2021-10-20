@@ -14,12 +14,13 @@ class Stopper(PipelineNode):
     def eliminate_stopwords(self, tokenized_tweed_text: list) -> list:
         return [word for word in tokenized_tweed_text if word not in self.__stopwords]
 
-    def get_stopwords(self) -> set:
-        stop_words = set(stopwords.words('english'))
-        stop_words = stop_words.union(
+    def get_stopwords(self) -> list:
+        stop_words = stopwords.words('english')
+        new_stop_words = [
             't',
             'rt',
             'amp',
             'co'
-        )
+        ]
+        stop_words.extend(new_stop_words)
         return stop_words
