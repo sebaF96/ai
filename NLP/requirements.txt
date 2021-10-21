@@ -5,3 +5,4 @@ nltk
 vaderSentiment
 python-dotenv
 matplotlib
+tqdm

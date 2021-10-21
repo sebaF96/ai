@@ -4,6 +4,7 @@ import pandas as pd
 import os
 from dotenv import load_dotenv
 from .pipeline_node import PipelineNode
+from tqdm import tqdm
 
 
 class Requester(PipelineNode):
@@ -29,12 +30,16 @@ class Requester(PipelineNode):
         results = list((response.json()['data']))
         token = response.json()['meta']['next_token'] if 'next_token' in response.json()['meta'] else None
         requests_made = 1
+        p_bat = tqdm(total=self.__max_pages, leave=False, unit="pages")
         while token and requests_made < self.__max_pages:
             params['next_token'] = response.json()['meta']['next_token']
             response = requests.get(self.__url, headers=headers, params=params)
             requests_made += 1
+            p_bat.update(1)
             results.extend(response.json()['data'])
             token = response.json()['meta']['next_token'] if 'next_token' in response.json()['meta'] else None
+        p_bat.update(self.__max_pages)
+        p_bat.close()
         results = pd.DataFrame(results)
         click.secho(f"Found {len(results)} tweets", fg="green", bold=True)
         return results
