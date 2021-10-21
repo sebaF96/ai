@@ -4,9 +4,7 @@ import pandas as pd
 
 
 class Polarizer(PipelineNode):
-    """Creo que esta clase no tiene que analizar las palabras sueltas del tokenized sino el df[text] limpio porque viene el tweet
-    completo ahi, va asi lo hicimos en clase """
-
+   
     def __init__(self):
         self.__analyzer = SentimentIntensityAnalyzer()
 
