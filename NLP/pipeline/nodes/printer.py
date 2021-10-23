@@ -87,8 +87,10 @@ class Printer(PipelineNode):
         plt.savefig(self.__target_directory + '/tbwd.png')
 
     def save_df_as_html(self, df: pd.DataFrame):
-        df.head(200).to_html(buf=self.__target_directory + '/df.html', columns=['text', 'tokenized_text', 'positive', 'negative',
-                                                                      'neutral'])
+        df.head(200).to_html(
+            buf=self.__target_directory + '/df.html',
+            columns=['text', 'tokenized_text', 'positive', 'negative', 'neutral']
+        )
 
     def copy_html_file(self):
         src = f'{pathlib.Path(__file__).parent.absolute()}/resources/results.html'

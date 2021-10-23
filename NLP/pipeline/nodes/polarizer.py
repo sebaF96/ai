@@ -4,7 +4,7 @@ import pandas as pd
 
 
 class Polarizer(PipelineNode):
-   
+
     def __init__(self):
         self.__analyzer = SentimentIntensityAnalyzer()
 
@@ -27,6 +27,6 @@ class Polarizer(PipelineNode):
                 row["result"] = "Negative"
             elif -0.1 <= result['compound'] < 0.1:
                 row["result"] = "Neutral"
-            elif 0.1 <= result['compound'] < 1.0:
+            elif 0.1 <= result['compound'] <= 1.0:
                 row["result"] = "Positive"
         return df
