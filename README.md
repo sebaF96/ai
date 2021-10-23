@@ -6,6 +6,14 @@
 Repositorio de la cátedra Inteligencia Artificial, Universidad de Mendoza, 2021
 
 
+<details>	
+  <summary><b>Development</b></summary><br/>
+  
+### Instalar Black code formatter
+  1. `conda install -c conda-forge black`
+  2. `pip install nb_black`
+  3. Agregar esto a la primer celda de cada notebook: `%load_ext nb_black`
+  
 ### Correr flake8 localmente
 
 #### Install
@@ -16,9 +24,12 @@ Repositorio de la cátedra Inteligencia Artificial, Universidad de Mendoza, 2021
 
 2. Agregar alias
 
-`echo "alias flake='flake8_nb --count --filename \"*.ipynb\" --ignore E121,E501,F821' >> ~/.bash_aliases && source ~/.bash_aliases`
+`echo "alias flake='flake8_nb --count --filename \"*.ipynb\" --ignore E121,E501,F821,E402' >> ~/.bash_aliases && source ~/.bash_aliases`
 
 #### Correr
 
 Hacer cd al repo, activar conda, y ejecutar `flake`
+
+
+</details>
 
